@@ -1,5 +1,4 @@
 
-```markdown
 # Multi-Method Intent Classification  for E-commerce Chatbots
 
 This project demonstrates **five different approaches** to classify user intents for an e-commerce chatbot.  
