@@ -3,7 +3,7 @@ from dataset_loader import load_dataset
 from preprocessing import clean_text
 from sklearn.metrics import classification_report
 
-with open("models/classifier.pkl", "rb") as f:
+with open("ml_classifier/models/classifier.pkl", "rb") as f:
     obj = pickle.load(f)
     clf = obj["model"]
     embedder = obj["embedder"]
