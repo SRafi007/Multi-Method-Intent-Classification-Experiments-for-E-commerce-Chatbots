@@ -1,0 +1,195 @@
+pricing:
+  keywords:
+    - price
+    - cost
+    - how much
+    - rate
+    - fees
+    - pricing
+    - cheap
+    - expnsive
+    - expenisve
+    - is it free
+    - discount
+    - offer
+    - sale price
+  regex:
+    - "price of.*"
+    - "cost of.*"
+    - "how much.*"
+    - ".*discount.*"
+    - ".*offer.*"
+
+product_availability:
+  keywords:
+    - in stock
+    - available
+    - availability
+    - stock left
+    - restock
+    - when available
+    - out of stock
+    - is this availble
+    - is it in stcok
+  regex:
+    - "is.*available"
+    - "when.*stock"
+    - "restock.*"
+
+order_status:
+  keywords:
+    - where is my order
+    - order status
+    - track order
+    - track my order
+    - delivery status
+    - shipping update
+    - late delivery
+    - wheres my paket
+    - wheres my orderrr
+    - i didnt receive
+  regex:
+    - "track.*order"
+    - "order.*status"
+    - "delivery.*status"
+    - "shipping.*update"
+
+refund_policy:
+  keywords:
+    - refund
+    - refund policy
+    - get money back
+    - money back
+    - want refund
+    - refund me
+    - need refund
+    - refund pls
+    - where is my refund
+  regex:
+    - "refund.*order"
+    - "money.*back"
+
+return_policy:
+  keywords:
+    - return
+    - return policy
+    - how to return
+    - item return
+    - return this
+    - want to return
+    - return pls
+    - return prduct
+  regex:
+    - "return.*product"
+    - "return.*item"
+
+policy_info:
+  keywords:
+    - policy
+    - rules
+    - terms
+    - conditions
+    - privacy policy
+    - shipping policy
+    - warranty
+    - guarantee
+    - can you explain policy
+  regex:
+    - ".*policy.*"
+    - "terms.*conditions"
+
+faq:
+  keywords:
+    - faq
+    - help
+    - support
+    - question
+    - how to
+    - what if
+    - information
+    - tell me more
+    - common questions
+  regex:
+    - ".*help.*"
+    - ".*how do i.*"
+
+product_search:
+  keywords:
+    - find product
+    - search product
+    - looking for
+    - show me
+    - recommend
+    - i want something
+    - find me
+    - need something
+    - product suggstion
+    - any recomendation
+    - i want to buy
+  regex:
+    - "find.*"
+    - "search.*"
+    - "show.*product.*"
+
+product_sourcing:
+  keywords:
+    - sourcing
+    - supplier
+    - wholesale
+    - bulk
+    - manufacturer
+    - source product
+    - dropship
+    - sourcing help
+    - b2b order
+  regex:
+    - "bulk.*order"
+    - "wholesale.*"
+    - "supplier.*"
+
+trend_analysis:
+  keywords:
+    - trending
+    - hot items
+    - popular product
+    - what is trending
+    - trend analysis
+    - market trend
+    - top selling
+    - what people buy
+    - best sellers
+  regex:
+    - "trend.*"
+    - "popular.*product"
+
+greeting:
+  keywords:
+    - hi
+    - hello
+    - hey
+    - hola
+    - yo
+    - wassup
+    - good morning
+    - good evening
+    - hi bot
+    - hi bro
+  regex: []
+
+off_topic:
+  keywords:
+    - donkey
+    - stupid
+    - dumb bot
+    - idiot
+    - nonsense
+    - blah blah
+    - what is your name
+    - do you love me
+    - joke
+    - tell me a joke
+  regex: []
+
+other:
+  keywords: []
+  regex: []
