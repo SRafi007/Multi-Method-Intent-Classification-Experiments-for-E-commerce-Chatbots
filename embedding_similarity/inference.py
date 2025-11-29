@@ -3,10 +3,10 @@ import pickle
 from common.preprocessing import clean_text
 
 # Preload everything for speed
-example_vectors = np.load("embeddings/example_vectors.npy")
-intents = np.load("embeddings/intents.npy")
+example_vectors = np.load("embedding_similarity/embeddings/example_vectors.npy")
+intents = np.load("embedding_similarity/embeddings/intents.npy")
 
-with open("embeddings/embedder.pkl", "rb") as f:
+with open("embedding_similarity/embeddings/embedder.pkl", "rb") as f:
     embedder = pickle.load(f)
 
 
