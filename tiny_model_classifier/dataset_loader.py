@@ -11,6 +11,9 @@ def load_csv(path: str = "common/synthetic_ecommerce_data.csv", test_size: float
     """
     df = pd.read_csv(path)
     df = df.dropna(subset=["text", "intent"])
+    # Filter out classes with fewer than 2 samples
+    v_counts = df["intent"].value_counts()
+    df = df[df["intent"].isin(v_counts[v_counts > 1].index)]
     X = df["text"].astype(str).tolist()
     y = df["intent"].astype(str).tolist()
 

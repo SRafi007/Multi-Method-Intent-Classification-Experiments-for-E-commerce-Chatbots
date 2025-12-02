@@ -1,14 +1,15 @@
 # scripts/train.py
 import os
-from datasets import Dataset, DatasetDict, ClassLabel, load_metric
+from datasets import Dataset, DatasetDict, ClassLabel
+import evaluate
 from transformers import AutoTokenizer, AutoModelForSequenceClassification, TrainingArguments, Trainer
 import numpy as np
-from dataset_loader import load_csv
-from preprocessing import clean_text
+from tiny_model_classifier.dataset_loader import load_csv
+from common.preprocessing import clean_text
 from typing import Dict
 
 MODEL_NAME = "distilbert-base-uncased"
-OUTPUT_DIR = "../model/distilbert-intent-classifier"
+OUTPUT_DIR = "model/distilbert-intent-classifier"
 
 def prepare_datasets():
     X_train, X_val, X_test, y_train, y_val, y_test = load_csv()
@@ -38,7 +39,7 @@ def tokenize_and_map(ds, tokenizer):
     return ds.map(preprocess, batched=True)
 
 def compute_metrics(p):
-    metric = load_metric("accuracy")
+    metric = evaluate.load("accuracy")
     preds = np.argmax(p.predictions, axis=1)
     acc = metric.compute(predictions=preds, references=p.label_ids)["accuracy"]
     return {"accuracy": acc}
@@ -57,7 +58,7 @@ def main():
         num_train_epochs=3,
         per_device_train_batch_size=16,
         per_device_eval_batch_size=32,
-        evaluation_strategy="epoch",
+        eval_strategy="epoch",
         save_strategy="epoch",
         learning_rate=2e-5,
         weight_decay=0.01,

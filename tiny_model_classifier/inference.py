@@ -2,15 +2,15 @@
 import json
 import os
 from transformers import AutoTokenizer, AutoModelForSequenceClassification, pipeline
-from preprocessing import clean_text
+from common.preprocessing import clean_text
 
-MODEL_DIR = "../model/distilbert-intent-classifier"  # or distilbert-lora-intent
+MODEL_DIR = "model/distilbert-intent-classifier"  # or distilbert-lora-intent
 
 def load_model(model_dir=MODEL_DIR):
     tokenizer = AutoTokenizer.from_pretrained(model_dir)
     model = AutoModelForSequenceClassification.from_pretrained(model_dir)
     # create a text-classification pipeline
-    clf = pipeline("text-classification", model=model, tokenizer=tokenizer, return_all_scores=False)
+    clf = pipeline("text-classification", model=model, tokenizer=tokenizer, top_k=1)
     # load id->label map if exists
     id_to_label_path = os.path.join(model_dir, "id_to_label.json")
     if os.path.exists(id_to_label_path):
@@ -22,7 +22,7 @@ def load_model(model_dir=MODEL_DIR):
 
 def predict(clf, text: str, id_to_label=None):
     text = clean_text(text)
-    out = clf(text)[0]  # e.g. {'label': 'LABEL_0', 'score': 0.98}
+    out = clf(text)[0][0]  # e.g. {'label': 'LABEL_0', 'score': 0.98}
     label = out["label"]
     score = out["score"]
     # If id_to_label mapping uses integers:

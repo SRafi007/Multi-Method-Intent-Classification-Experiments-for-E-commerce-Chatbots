@@ -8,11 +8,11 @@ from datasets import Dataset, DatasetDict
 from transformers import AutoTokenizer, AutoModelForSequenceClassification, TrainingArguments, Trainer
 from peft import get_peft_config, LoraConfig, get_peft_model
 import numpy as np
-from dataset_loader import load_csv
-from preprocessing import clean_text
+from tiny_model_classifier.dataset_loader import load_csv
+from common.preprocessing import clean_text
 
 MODEL_NAME = "distilbert-base-uncased"
-OUTPUT_DIR = "../model/distilbert-lora-intent"
+OUTPUT_DIR = "model/distilbert-lora-intent"
 
 def prepare():
     X_train, X_val, X_test, y_train, y_val, y_test = load_csv()
@@ -60,17 +60,17 @@ def main():
         num_train_epochs=4,
         per_device_train_batch_size=16,
         per_device_eval_batch_size=32,
-        evaluation_strategy="epoch",
+        eval_strategy="epoch",
         save_strategy="epoch",
         learning_rate=2e-4,
         weight_decay=0.01,
         logging_steps=50,
-        fp16=True
+        fp16=False
     )
 
     def compute_metrics(p):
-        from datasets import load_metric
-        metric = load_metric("accuracy")
+        import evaluate
+        metric = evaluate.load("accuracy")
         preds = np.argmax(p.predictions, axis=1)
         acc = metric.compute(predictions=preds, references=p.label_ids)["accuracy"]
         return {"accuracy": acc}
